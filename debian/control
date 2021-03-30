@@ -1,0 +1,12 @@
+Source: borgbackup-cron
+Maintainer: Camille Lafitte <debian@webelys.com>
+Section: misc
+Priority: optional
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 9)
+
+Package: borgbackup-cron
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Borbackup Cron
+ Provide an automated cron to backup to any borgbackup server

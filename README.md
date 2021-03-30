@@ -8,6 +8,12 @@
 
 > You've gotten their attention in the introduction, now show a few code examples. So they get a visualization and as a bonus, make them copy/paste friendly.
 
+## Debian Package
+
+git clone git@github.com:Webelys/borgbackup-cron.git
+cd borgbackup-cron
+debuild -b -uc -us
+
 ## Installation
 
 > Script are two main files :
