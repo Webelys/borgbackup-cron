@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# shellcheck disable=SC1091
+. /etc/default/borgbackup-cron.conf
+
+if [ -z "${BORG_REPOSITORY}" ]; then
+        echo "TARGET NOT SET"
+        exit 1
+fi
+
+if [ -n "${BORG_SSH_SERVER}" ]; then
+        BORG_REPOSITORY=${BORG_SSH_SERVER}:${BORG_REPOSITORY}
+fi
+
+if [ -n "${BORG_SSH_USER}" ]; then
+        BORG_REPOSITORY=${BORG_SSH_USER}@${BORG_REPOSITORY}
+fi
+
+
+if [ -n "${BORG_SSH_KEY}" ]; then
+        export BORG_RSH="ssh -i ${BORG_SSH_KEY}"
+fi
+
+if [ -n "${BORG_SSH_PORT}" ]; then
+        export BORG_RSH+=" -p ${BORG_SSH_PORT}"
+fi
+
+borg create -v --stats "${BORG_REPOSITORY}::$(date '+%Y_%m_%d')" ${DIRECTORIES}
