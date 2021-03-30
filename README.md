@@ -10,9 +10,11 @@
 
 ## Debian Package
 
+```
 git clone git@github.com:Webelys/borgbackup-cron.git
 cd borgbackup-cron
 debuild -b -uc -us
+```
 
 ## Installation
 
