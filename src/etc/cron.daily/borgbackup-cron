@@ -1,0 +1,3 @@
+#!/bin/bash
+test -x /usr/bin/borgbackup-cron || exit 0
+/usr/bin/borgbackup-cron
