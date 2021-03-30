@@ -26,3 +26,4 @@ if [ -n "${BORG_SSH_PORT}" ]; then
 fi
 
 borg create -v --stats "${BORG_REPOSITORY}::$(date '+%Y_%m_%d')" ${DIRECTORIES}
+borg prune --keep-daily "${KEEP_DAILY}" --keep-weekly "${KEEP_WEEKLY}" --keep-monthly "${KEEP_MONTHLY}" "${BORG_REPOSITORY}"
