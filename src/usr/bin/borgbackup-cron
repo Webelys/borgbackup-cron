@@ -26,4 +26,9 @@ if [ -n "${BORG_SSH_PORT}" ]; then
 fi
 
 borg create -v --stats "${BORG_REPOSITORY}::$(date '+%Y_%m_%d')" ${DIRECTORIES}
+if [[ $? == 2 ]];then
+        borg init "${BORG_REPOSITORY}"
+        borg create -v --stats "${BORG_REPOSITORY}::$(date '+%Y_%m_%d')" ${DIRECTORIES}
+fi
+
 borg prune --keep-daily "${KEEP_DAILY}" --keep-weekly "${KEEP_WEEKLY}" --keep-monthly "${KEEP_MONTHLY}" "${BORG_REPOSITORY}"
