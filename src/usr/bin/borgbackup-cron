@@ -31,4 +31,4 @@ if [[ $? == 2 ]];then
         borg create -v --stats "${BORG_REPOSITORY}::$(date '+%Y_%m_%d')" ${DIRECTORIES}
 fi
 
-borg prune --keep-daily "${KEEP_DAILY}" --keep-weekly "${KEEP_WEEKLY}" --keep-monthly "${KEEP_MONTHLY}" "${BORG_REPOSITORY}"
+borg prune --keep-daily "${KEEP_DAILY:-7}" --keep-weekly "${KEEP_WEEKLY:-4}" --keep-monthly "${KEEP_MONTHLY:-3}" "${BORG_REPOSITORY}"
